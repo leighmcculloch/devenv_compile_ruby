@@ -18,3 +18,8 @@ A `.tar.bz2` file will be outputted in the `ruby` directory.
 rvm mount [path to .tar.bz2 file]
 rvm mount -r [url to .tar.bz2 file]
 ```
+
+## Limitations
+
+Only works with users named `leighmcculloch` because the location of libruby
+somehow is encoded into the resulting binary package.
