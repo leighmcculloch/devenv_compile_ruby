@@ -1,5 +1,8 @@
 # devenv_compile_ruby
 
+[![Build](https://github.com/leighmcculloch/devenv_compile_ruby/workflows/build/badge.svg)](https://github.com/leighmcculloch/devenv_compile_ruby/actions)
+[![Release](https://img.shields.io/github/v/release/leighmcculloch/devenv_compile_ruby.svg)](https://github.com/leighmcculloch/devenv_compile_ruby/releases/latest)
+
 Docker image and Makefile for building ruby from source and preparing it for
 use as an rvm binary on Debian Buster. Intended for use with
 `leighmcculloch/devenv`.
