@@ -12,9 +12,24 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
-    - name: Ruby Build
-      run: make ruby
-    - name: Ruby Upload Binary
-      run: make upload
+    - run: make ruby
+    - id: release
+      run: |
+        echo "::set-output name=filename::$(ls -1 ruby)"
+        echo "::set-output name=date::$(date +%Y%m%d)"
+        echo "::set-output name=rubyversion::$(ls -1 ruby | grep -oE '[0-9]+.[0-9]+.[0-9]+')"
+    - uses: actions/create-release@v1
+      id: create_release
       env:
-        BINTRAY_API_KEY: ${{secrets.BINTRAY_API_KEY}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.release.outputs.rubyversion }}-${{ steps.release.outputs.date }}
+        release_name: v${{ steps.release.outputs.rubyversion }}-${{ steps.release.outputs.date }}
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ruby/${{ steps.release.outputs.filename }}
+        asset_name: ${{ steps.release.outputs.filename }}
+        asset_content_type: application/x-bzip2

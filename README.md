@@ -7,7 +7,7 @@ use as an rvm binary on Debian Buster. Intended for use with
 ## Building
 
 ```
-make build
+make ruby
 ```
 
 A `.tar.bz2` file will be outputted in the `ruby` directory.
@@ -22,4 +22,5 @@ rvm mount -r [url to .tar.bz2 file]
 ## Limitations
 
 Only works with users named `leighmcculloch` because the location of libruby
-somehow is encoded into the resulting binary package.
+somehow is encoded into the resulting binary package. Let me know if you know
+how I can get around that!
